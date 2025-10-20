@@ -1,18 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CookieCount : MonoBehaviour
 {
     public int cookieCount;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    // Update is called once per frame
-    void Update()
+    // Support either legacy UI Text or TextMeshPro. Assign one in the Inspector.
+    public TMP_Text countTMPText;
+
+    void Start()
     {
-        // click to increase cookie count
-        On Click()
+        UpdateCountText();
+    }
+
+    // Call this from a UI Button OnClick() or other input handler
+    public void OnClick()
+    {
+        cookieCount++;
+        UpdateCountText();
+    }
+
+    void UpdateCountText()
+    {
+        string s = cookieCount.ToString();
+        if (countTMPText != null)
         {
-            cookieCount++;
+            countTMPText.text = s;
+            return;
         }
     }
 }
