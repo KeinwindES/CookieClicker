@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CookieCount : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class CookieCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+        // click to increase cookie count
+        On Click()
+        {
+            cookieCount++;
+        }
     }
 }
