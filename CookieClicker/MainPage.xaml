@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookieClicker.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+
+            <ImageButton
+                x:Name="CounterBtn"
+                Source="cookie.png"
+                HeightRequest="185"
+                Clicked="OnCounterClicked"
+                SemanticProperties.Description="cookie button" />
+
+
+            <Label
+                Text="{Binding Cookie, StringFormat='You have {0} cookies'}"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
