@@ -23,6 +23,14 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         Cookie++;
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
+    //  Upgrades
+    private void OnBuyClicker(object? sender, EventArgs e) {
+        if (Cookie > 0) {
+            Cookie--;
+        }
+        
+        SemanticScreenReader.Announce($"Clicked {Cookie} times");
+    }
 
     public new event PropertyChangedEventHandler? PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string? name = null) =>

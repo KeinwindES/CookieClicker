@@ -19,6 +19,11 @@
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
             
+            <Button
+                Text="Buy"
+                Clicked="OnBuyClicker"/>
+            
+            
         </VerticalStackLayout>
     </ScrollView>
 
