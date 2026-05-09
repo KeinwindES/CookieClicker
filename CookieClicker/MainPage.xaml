@@ -20,8 +20,21 @@
                 SemanticProperties.HeadingLevel="Level2" />
             
             <Button
-                Text="Buy"
+                Text="Buy Clicker"
                 Clicked="OnBuyClicker"/>
+            
+            <Button
+                Text="Buy Melons"
+                Clicked="OnBuyMelon"/>
+            
+            <Button
+                Text="Buy Table"
+                Clicked="OnBuyTable"/>
+            
+            <Button
+                Text="Buy Stand"
+                Clicked="OnBuyStand"/>
+            
             
             
         </VerticalStackLayout>
