@@ -6,12 +6,43 @@ namespace CookieClicker;
 public partial class MainPage : ContentPage, INotifyPropertyChanged
 {
     private int _cookie = 0;
+    
+    private int _clicker = 0;
+    private int _melon = 0;
+    private int _table = 0;
+    private int _stand = 0;
+
     public int Cookie 
     { 
         get => _cookie; 
         set { _cookie = value; OnPropertyChanged(); } 
     }
+    
+    public int Clicker {
+        get => _clicker; 
+        set { _clicker = value; OnPropertyChanged(); } 
+    }
+    
+    public int Melon {
+        get => _melon; 
+        set { _melon = value; OnPropertyChanged(); } 
 
+    }
+    
+    public int Table {
+        get => _table; 
+        set { _table = value; OnPropertyChanged(); } 
+
+
+    }
+
+    public int Stand {
+        get => _stand; 
+        set { _stand = value; OnPropertyChanged(); } 
+
+
+    }
+    
     public MainPage()
     {
         InitializeComponent();
@@ -27,6 +58,9 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     private void OnBuyClicker(object? sender, EventArgs e) {
         if (Cookie >= 1) {
             Cookie--;
+            Clicker++;
+            SemanticScreenReader.Announce($"Clicked {Clicker} times");
+
         }
         
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
@@ -35,6 +69,9 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     private void OnBuyMelon(object? sender, EventArgs e) {
         if (Cookie >= 5) {
             Cookie = Cookie -5;
+            Melon++;
+            SemanticScreenReader.Announce($"Clicked {Clicker} times");
+
         }
         
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
@@ -43,6 +80,8 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     private void OnBuyTable(object? sender, EventArgs e) {
         if (Cookie >= 10) {
             Cookie = Cookie -10;
+            Table++;
+            SemanticScreenReader.Announce($"Clicked {Table} times");
 
         }
         
