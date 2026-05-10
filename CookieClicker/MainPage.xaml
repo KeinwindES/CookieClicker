@@ -17,30 +17,29 @@
             <Label
                 Text="{Binding Cookie, StringFormat='You have {0} cookies'}"
                 Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                SemanticProperties.HeadingLevel="Level2" /> 
             
+            <Label
+                Text="{Binding CPS, StringFormat='{0} Cookie Per Second'}"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
             <Button
-                Text="{Binding Clicker, StringFormat='Buy a Clicker &#10;You have {0} Clickers'}"
+                Text="{Binding Clicker, StringFormat='Buy a Clicker 1C&#10;You have {0} Clickers'}"
                 Clicked="OnBuyClicker"/>
             
             <Button
-                Text="{Binding Melon, StringFormat='Buy a Melon &#10;You have {0} Melons'}"
+                Text="{Binding Melon, StringFormat='Buy a Melon 50C&#10;You have {0} Melons'}"
                 Clicked="OnBuyMelon"/>
             
             <Button
-                Text="{Binding Table, StringFormat='Buy a Table &#10;You have {0} Tables'}"
+                Text="{Binding Table, StringFormat='Buy a Table 100C&#10;You have {0} Tables'}"
 
                 Clicked="OnBuyTable"/>
             
             <Button
-                Text="{Binding Stand, StringFormat='Buy a Stand &#10;You have {0} Stands'}"
+                Text="{Binding Stand, StringFormat='Buy a Stand 500C&#10;You have {0} Stands'}"
                 Clicked="OnBuyStand"/>
-            
-            
-
-
-            
-            
             
         </VerticalStackLayout>
     </ScrollView>

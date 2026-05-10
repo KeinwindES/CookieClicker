@@ -11,6 +11,7 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     private int _melon = 0;
     private int _table = 0;
     private int _stand = 0;
+    private int _cps = 0;
 
     public int Cookie 
     { 
@@ -42,6 +43,11 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
 
 
     }
+
+    public int CPS {
+        get => _cps; 
+        set { _cps = value; OnPropertyChanged(); } 
+    }
     
     public MainPage()
     {
@@ -55,21 +61,22 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
     //  Upgrades
-    private void OnBuyClicker(object? sender, EventArgs e) {
+    public void OnBuyClicker(object? sender, EventArgs e) {
         if (Cookie >= 1) {
             Cookie--;
             Clicker++;
+            CPS++;
             SemanticScreenReader.Announce($"Clicked {Clicker} times");
 
         }
-        
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
     
-    private void OnBuyMelon(object? sender, EventArgs e) {
-        if (Cookie >= 5) {
-            Cookie = Cookie -5;
+    public void OnBuyMelon(object? sender, EventArgs e) {
+        if (Cookie >= 50) {
+            Cookie = Cookie -50;
             Melon++;
+            CPS = CPS + 5;
             SemanticScreenReader.Announce($"Clicked {Clicker} times");
 
         }
@@ -77,10 +84,12 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
     
-    private void OnBuyTable(object? sender, EventArgs e) {
-        if (Cookie >= 10) {
-            Cookie = Cookie -10;
+    public void OnBuyTable(object? sender, EventArgs e) {
+        if (Cookie >= 100) {
+            Cookie = Cookie -100;
             Table++;
+            CPS = CPS + 10;
+
             SemanticScreenReader.Announce($"Clicked {Table} times");
 
         }
@@ -88,12 +97,33 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
     
-    private void OnBuyStand(object? sender, EventArgs e) {
-        if (Cookie >= 20) {
-            Cookie = Cookie -20;
+    public void OnBuyStand(object? sender, EventArgs e) {
+        if (Cookie >= 500) {
+            Cookie = Cookie -500;
+            Stand++;
+            CPS = CPS + 20;
+            SemanticScreenReader.Announce($"Clicked {Stand} times");
+
         }
         
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
+    }
+    
+    public async void StartGameLoop()
+    {
+        bool isGameRunning = true;
+
+        while (isGameRunning)
+        {
+            // 1. Logic: Add cookies
+            Cookie += CPS;
+
+            // 2. UI: Update the screen
+            SemanticScreenReader.Announce($"Clicked {Cookie} times");
+
+            // 3. Wait: This lets the UI "breathe" for 1 second
+            await Task.Delay(1000); 
+        }
     }
 
     public new event PropertyChangedEventHandler? PropertyChanged;
