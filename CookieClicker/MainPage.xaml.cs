@@ -52,9 +52,19 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     public MainPage()
     {
         InitializeComponent();
-        BindingContext = this; // Required to link XAML to this class
-    }
+        BindingContext = this;
 
+        // Create a timer that fires every 1 second
+        var timer = Dispatcher.CreateTimer();
+        timer.Interval = TimeSpan.FromSeconds(0.1);
+        timer.Tick += (s, e) => 
+        {
+            // This runs every second!
+            Cookie += CPS;
+        };
+        timer.Start();
+    }
+    
     private void OnCounterClicked(object? sender, EventArgs e)
     {
         Cookie++;
@@ -62,8 +72,8 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     }
     //  Upgrades
     public void OnBuyClicker(object? sender, EventArgs e) {
-        if (Cookie >= 1) {
-            Cookie--;
+        if (Cookie >= 10) {
+            Cookie = Cookie - 10;
             Clicker++;
             CPS++;
             SemanticScreenReader.Announce($"Clicked {Clicker} times");
@@ -73,8 +83,8 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     }
     
     public void OnBuyMelon(object? sender, EventArgs e) {
-        if (Cookie >= 50) {
-            Cookie = Cookie -50;
+        if (Cookie >= 100) {
+            Cookie = Cookie -100;
             Melon++;
             CPS = CPS + 5;
             SemanticScreenReader.Announce($"Clicked {Clicker} times");
@@ -85,8 +95,8 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     }
     
     public void OnBuyTable(object? sender, EventArgs e) {
-        if (Cookie >= 100) {
-            Cookie = Cookie -100;
+        if (Cookie >= 500) {
+            Cookie = Cookie -500;
             Table++;
             CPS = CPS + 10;
 
@@ -98,8 +108,8 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
     }
     
     public void OnBuyStand(object? sender, EventArgs e) {
-        if (Cookie >= 500) {
-            Cookie = Cookie -500;
+        if (Cookie >= 1000) {
+            Cookie = Cookie -1000;
             Stand++;
             CPS = CPS + 20;
             SemanticScreenReader.Announce($"Clicked {Stand} times");
@@ -109,21 +119,9 @@ public partial class MainPage : ContentPage, INotifyPropertyChanged
         SemanticScreenReader.Announce($"Clicked {Cookie} times");
     }
     
-    public async void StartGameLoop()
-    {
-        bool isGameRunning = true;
-
-        while (isGameRunning)
-        {
-            // 1. Logic: Add cookies
-            Cookie += CPS;
-
-            // 2. UI: Update the screen
-            SemanticScreenReader.Announce($"Clicked {Cookie} times");
-
-            // 3. Wait: This lets the UI "breathe" for 1 second
-            await Task.Delay(1000); 
-        }
+    //Saves
+    public void OnSave(object? sender, EventArgs e) {
+        //Saves
     }
 
     public new event PropertyChangedEventHandler? PropertyChanged;
